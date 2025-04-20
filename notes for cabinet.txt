@@ -1,0 +1,6 @@
+How to make basic function
+Step one. Store path to file
+Step two. code thing to make sure file can't be touched
+step three. ???
+
+MAKE sure it Java and SQL can talk to each other.
