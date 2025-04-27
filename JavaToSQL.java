@@ -31,15 +31,15 @@ public class JavaToSQL {
            String updateQuery = "INSERT INTO cabinet (CabinetID, CabinetName, DateOfCreation, CabinetLocked, Password, Owner, Filepath) VALUES(12, 'My dudes', '2025-12-21', 1, 'myNUTT!', 'Bosh', '/cabinets/Homework');";
            String insertQuery = "SELECT * FROM cabinet;";
            String createTable = "CREATE TABLE cabinet ("
-                    + "CabinetID int (100) Primary key,"
-                    + "CabinetName VARCHAR(20),"
-                    + "DateOfCreation date,"
-                    + "CabinetLocked boolean,"
-                   +"Password Varchar(20),"
-                   + "Owner Varchar(20),"
-                   + "FilePath LONGTEXT)";
-           String createSchema = "??";
-           String createDataBase = "??";
+                    + "CabinetID int (100) Primary key, "
+                    + "CabinetName VARCHAR(20), "
+                    + "DateOfCreation date, "
+                    + "CabinetLocked boolean, "
+                   +"Password Varchar(20), "
+                   + "Owner Varchar(20), "
+                   + "FilePath LONGTEXT)"; //untested
+           String createSchema = "CREATE SCHEMA myNewSchema"; //untested
+           String createDataBase = "CREATE DATABASE myDatabase"; //untested
            
           PreparedStatement preparedStatement1 = connection.prepareStatement(insertQuery);
           PreparedStatement preparedStatement2 = connection.prepareStatement(updateQuery); 
