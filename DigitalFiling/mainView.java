@@ -9,7 +9,10 @@ public class mainView {
 
 
     private void fillList() {
-        
+        //gets properties here
+        String name;
+        String owner;
+        newCabinet(name, owner);
     }
 
 
