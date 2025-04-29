@@ -10,9 +10,13 @@ public class mainView {
 
     private void fillList() {
         //gets properties here
-        String name;
-        String owner;
-        newCabinet(name, owner);
+        String name = "";
+        String owner = "";
+        int idMax = 64;
+        for (int i = 0; i < idMax; i++ ) {
+            cabList.add(newCabinet(name, owner));
+        }
+        
     }
 
 
@@ -23,11 +27,11 @@ public class mainView {
 
 
 
-    private void newCabinet(String name, String owner) { 
+    private Cabinet newCabinet(String name, String owner) { 
         Cabinet newC = new Cabinet();
         newC.setName(name);
         newC.setOwner(owner);
-        cabList.add(newC);
+        return newC;
     }
 
 
