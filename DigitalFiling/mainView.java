@@ -13,13 +13,17 @@ public class mainView {
         String name = "";
         String owner = "";
         int idMax = 64;
-        for (int i = 0; i < idMax; i++ ) {
-            cabList.add(newCabinet(name, owner));
+        for (int i = 0; i < idMax; i++ ) { //maybe instead have it go to the interperator to create hte cabinets and ship them over here?
+            cabList.add(newCabinet(name, owner)); //talk to henry about the possibility of shipping Cabinets directly from the database
         }
         
     }
 
 
+    private void refreshView() {
+        //will go back through the existing list and create GUI elements based off the cabinet objects
+        
+    }
 
 
 
