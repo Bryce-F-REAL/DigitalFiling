@@ -8,18 +8,22 @@ public class Cabinet {
     private String Name;
     private String Owner;
     private Path cabPath; 
+    private String password;
+    private boolean lockState = true;
+    private String DoC;
 
-    private void setPath(Path p) {
+
+    public void setPath(Path p) {
         // method to initialize the path of a cabinet
         this.cabPath = p;
     }
 
-    private void setOwner(String own) {
+    public void setOwner(String own) {
         //method to set owner property
         this.Owner = own;
     }
 
-    private void setName(String na) {
+    public void setName(String na) {
         //method to set the name property
         this.Name = na;
     }
