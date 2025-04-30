@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Henry Mutschler
@@ -18,13 +20,15 @@ public class JavaToSQL2 {
     /**
      * @param args the command line arguments
      */
- public static void main(String[] args) {
+ public static void main(String[] args) throws ClassNotFoundException {
         // TODO code application logic here
+        
         String jdbcUrl = "jdbc:mysql://localhost:3306/cabinetdb";
         String username = "root";
         String password = "B00t!";
 
         try {
+          
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
             // Now you can use 'connection' to execute SQL queries.
             // Don't forget to close the connection when you're done.
@@ -52,12 +56,13 @@ public class JavaToSQL2 {
             e.printStackTrace();
         }
     }
-       public static void showAllCabinetNames(String jdbcUrl, String username, String password) {
+       public static void showCabinetName(String jdbcUrl, String username, String password, String cabinetName) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 
-            String allQuery = "SELECT * FROM cabinet;";
+            String allQuery = "SELECT * FROM cabinet cabinet.CabinetName =" + cabinetName +";";
+            // Is this whatcha wanted? eyyyyyup
             PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
             ResultSet executeQuery = preparedStatement1.executeQuery();
 
@@ -73,18 +78,27 @@ public class JavaToSQL2 {
         }
     }
     
-        public static void showAllCabinetIDs(String jdbcUrl, String username, String password) {
+    /**
+     *
+     * @param jdbcUrl
+     * @param username
+     * @param password
+     * @param cabinetName
+     * @return
+     */
+    public static void returnCabinetName(String jdbcUrl, String username, String password, String cabinetName) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 
-            String allQuery = "SELECT * FROM cabinet;";
+            String allQuery = "SELECT * FROM cabinet cabinet.CabinetName =" + cabinetName +";";
+            // Is this whatcha wanted? eyyyyyup
             PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
             ResultSet executeQuery = preparedStatement1.executeQuery();
 
             while (executeQuery.next()) //How we get the results
             {
-                String CabinetName = executeQuery.getString("CabinetID");
+                String CabinetName = executeQuery.getString("CabinetName");
                 // print the results
                 System.out.format("%s, \n", CabinetName);
             }
@@ -93,111 +107,5 @@ public class JavaToSQL2 {
             e.printStackTrace();
         }
     }
-
-           public static void showAllCabinetDate(String jdbcUrl, String username, String password) {
-        try {
-
-            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-
-            String allQuery = "SELECT * FROM cabinet;";
-            PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
-            ResultSet executeQuery = preparedStatement1.executeQuery();
-
-            while (executeQuery.next()) //How we get the results
-            {
-                String CabinetName = executeQuery.getString("DateOfCreation");
-                // print the results
-                System.out.format("%s, \n", CabinetName);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }     
-    
-       public static void showAllCabinetLockStat(String jdbcUrl, String username, String password) {
-        try {
-
-            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-
-            String allQuery = "SELECT * FROM cabinet;";
-            PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
-            ResultSet executeQuery = preparedStatement1.executeQuery();
-
-            while (executeQuery.next()) //How we get the results
-            {
-                String CabinetName = executeQuery.getString("CabinetLocked");
-                // print the results
-                System.out.format("%s, \n", CabinetName);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    } 
-    
-         public static void showAllCabinetPassword(String jdbcUrl, String username, String password) {
-        try {
-
-            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-
-            String allQuery = "SELECT * FROM cabinet;";
-            PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
-            ResultSet executeQuery = preparedStatement1.executeQuery();
-
-            while (executeQuery.next()) //How we get the results
-            {
-                String CabinetName = executeQuery.getString("Password");
-                // print the results
-                System.out.format("%s, \n", CabinetName);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-  
-             public static void showAllCabinetOwner(String jdbcUrl, String username, String password) {
-        try {
-
-            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-
-            String allQuery = "SELECT * FROM cabinet;";
-            PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
-            ResultSet executeQuery = preparedStatement1.executeQuery();
-
-            while (executeQuery.next()) //How we get the results
-            {
-                String CabinetName = executeQuery.getString("Owner");
-                // print the results
-                System.out.format("%s, \n", CabinetName);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    } 
-   
-                 public static void showAllCabinetFilePath(String jdbcUrl, String username, String password) {
-        try {
-
-            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-
-            String allQuery = "SELECT * FROM cabinet;";
-            PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
-            ResultSet executeQuery = preparedStatement1.executeQuery();
-
-            while (executeQuery.next()) //How we get the results
-            {
-                String CabinetName = executeQuery.getString("FilePath");
-                // print the results
-                System.out.format("%s, \n", CabinetName);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }           
-        
- 
+      
 }
