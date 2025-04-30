@@ -1,11 +1,18 @@
 package DigitalFiling;
 
-public class cabinetView {
-     Cabinet[] cabList = new Cabinet[64];
+import java.io.File;
+import java.util.ArrayList;
 
-    public void newCabinet(String name) { 
-        Cabinet newC = new Cabinet();
-        newC.setName(name);
+public class cabinetView {
+     
+     ArrayList<File> cabFiles = new ArrayList<File>();
+     File location;
+
+    
+
+    public void initializeCabinet() {
+        //essentially this method collects the files to display for this method
+
     }
 
 
