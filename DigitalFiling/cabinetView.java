@@ -12,6 +12,7 @@ public class cabinetView {
 
     public void initializeCabinet() {
         //essentially this method collects the files to display for this method
+
     }
 
 
