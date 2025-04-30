@@ -29,7 +29,7 @@ public class Cabinet {
     }
 
 
-    private boolean unlock( String dataPass) { //method to check a password against the stored password for the purpose of unlocking
+    public boolean unlock( String dataPass) { //method to check a password against the stored password for the purpose of unlocking
         Scanner sc = new Scanner(System.in);
     System.out.println("Please enter Password");
     String pass = sc.nextLine();
