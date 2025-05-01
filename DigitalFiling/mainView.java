@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class mainView {
 
-    ArrayList<Cabinet> cabList = new ArrayList<Cabinet>();
+    ArrayList<Cabinet> cabList = new ArrayList<Cabinet>(); //make sure to allow for comparison between this and database objects in order to make changes
     
-
+    //limit to ONE cabinet view at a time, as multiple opened at the same time might cause some serious issues (concurrency is a bitch)
 
     private void fillList() {
         //gets properties here

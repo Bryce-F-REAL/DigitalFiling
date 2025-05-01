@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package javatosql2;
+package DigitalFiling;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,9 +27,9 @@ public class JavaToSQL2 {
         String jdbcUrl = "jdbc:mysql://localhost:3306/cabinetdb";
         String username = "root";
         String password = "B00t!";
-        
-        JavaToSQL2.showCabinetInfo(jdbcUrl, username, password, "4");
-        JavaToSQL2.showCabinetInfo(jdbcUrl, username, password, "2");
+        JavaToSQL2 temp = new JavaToSQL2();
+        temp.showCabinetInfo(jdbcUrl, username, password, "4");
+        temp.showCabinetInfo(jdbcUrl, username, password, "2");
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -61,7 +61,7 @@ public class JavaToSQL2 {
        
     }
 
-    public static void showCabinetName(String jdbcUrl, String username, String password, String cabinetName) {
+    public void showCabinetName(String jdbcUrl, String username, String password, String cabinetName) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -119,7 +119,7 @@ public class JavaToSQL2 {
         }
     }
 
-    public static void showCabinetDate(String jdbcUrl, String username, String password, String cabinetName) {
+    public void showCabinetDate(String jdbcUrl, String username, String password, String cabinetName) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -140,7 +140,7 @@ public class JavaToSQL2 {
         }
     }
 
-    public static void showCabinetLockStat(String jdbcUrl, String username, String password, String cabinetName) {
+    public void showCabinetLockStat(String jdbcUrl, String username, String password, String cabinetName) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -161,7 +161,7 @@ public class JavaToSQL2 {
         }
     }
 
-    public static void showCabinetPassword(String jdbcUrl, String username, String password, String cabinetName) {
+    public void showCabinetPassword(String jdbcUrl, String username, String password, String cabinetName) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -182,7 +182,7 @@ public class JavaToSQL2 {
         }
     }
 
-    public static void showCabinetOwner(String jdbcUrl, String username, String password, String cabinetName) {
+    public void showCabinetOwner(String jdbcUrl, String username, String password, String cabinetName) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -203,7 +203,7 @@ public class JavaToSQL2 {
         }
     }
 
-    public static void showCabinetFilePath(String jdbcUrl, String username, String password) {
+    public void showCabinetFilePath(String jdbcUrl, String username, String password) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -224,7 +224,7 @@ public class JavaToSQL2 {
         }
     }
 
-    public static void showCabinetID(String jdbcUrl, String username, String password, String cabinetName) {
+    public void showCabinetID(String jdbcUrl, String username, String password, String cabinetName) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -245,7 +245,7 @@ public class JavaToSQL2 {
         }
     }
 
-    public static void showAllCabinetIDs(String jdbcUrl, String username, String password) {
+    public void showAllCabinetIDs(String jdbcUrl, String username, String password) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -266,7 +266,7 @@ public class JavaToSQL2 {
         }
     }
 
-    public static void showAllCabinetNames(String jdbcUrl, String username, String password) {
+    public void showAllCabinetNames(String jdbcUrl, String username, String password) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
