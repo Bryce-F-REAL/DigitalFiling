@@ -28,6 +28,10 @@ public class Cabinet {
         this.Name = na;
     }
 
+    public void setPass(String pass) {
+        this.password = pass;
+    }
+
 
     public boolean unlock( String dataPass) { //method to check a password against the stored password for the purpose of unlocking
         Scanner sc = new Scanner(System.in);
