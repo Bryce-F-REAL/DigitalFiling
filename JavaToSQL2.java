@@ -27,7 +27,9 @@ public class JavaToSQL2 {
         String jdbcUrl = "jdbc:mysql://localhost:3306/cabinetdb";
         String username = "root";
         String password = "B00t!";
-
+        
+        JavaToSQL2.showCabinetInfo(jdbcUrl, username, password, "4");
+        JavaToSQL2.showCabinetInfo(jdbcUrl, username, password, "2");
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -35,16 +37,16 @@ public class JavaToSQL2 {
             // Don't forget to close the connection when you're done.
             //  String updateQuery = "INSERT INTO cabinet (CabinetID, CabinetName, DateOfCreation, CabinetLocked, Password, Owner, Filepath) VALUES(12, 'My dudes', '2025-12-21', 1, 'myNUTT!', 'Bosh', '/cabinets/Homework');";
 
-            String createTable = "CREATE TABLE cabinet ("
-                    + "CabinetID int (100) Primary key, "
-                    + "CabinetName VARCHAR(20), "
-                    + "DateOfCreation date, "
-                    + "CabinetLocked boolean, "
-                    + "Password Varchar(20), "
-                    + "Owner Varchar(20), "
-                    + "FilePath LONGTEXT)"; //untested
-            String createSchema = "CREATE SCHEMA myNewSchema"; //untested
-            String createDataBase = "CREATE DATABASE myDatabase"; //untested
+//            String createTable = "CREATE TABLE cabinet ("
+//                    + "CabinetID int (100) Primary key, "
+//                    + "CabinetName VARCHAR(20), "
+//                    + "DateOfCreation date, "
+//                    + "CabinetLocked boolean, "
+//                    + "Password Varchar(20), "
+//                    + "Owner Varchar(20), "
+//                    + "FilePath LONGTEXT)"; //untested
+//            String createSchema = "CREATE SCHEMA myNewSchema"; //untested
+//            String createDataBase = "CREATE DATABASE myDatabase"; //untested
 
             //  PreparedStatement preparedStatement2 = connection.prepareStatement(updateQuery);
             //  preparedStatement2.executeUpdate();
@@ -55,6 +57,8 @@ public class JavaToSQL2 {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+       
     }
 
     public static void showCabinetName(String jdbcUrl, String username, String password, String cabinetName) {
@@ -62,7 +66,7 @@ public class JavaToSQL2 {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 
-            String allQuery = "SELECT * FROM cabinet cabinet.CabinetName =" + cabinetName + ";";
+            String allQuery = "SELECT * FROM cabinet WHERE cabinet.CabinetName =" + cabinetName + ";";
             // Is this whatcha wanted? eyyyyyup
             PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
             ResultSet executeQuery = preparedStatement1.executeQuery();
@@ -87,21 +91,27 @@ public class JavaToSQL2 {
      * @param cabinetName
      * @return
      */
-    public static void showCabinetInfo(String jdbcUrl, String username, String password, String cabinetName) {
+    public void showCabinetInfo(String jdbcUrl, String username, String password, String cabinetID) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 
-            String allQuery = "SELECT * FROM cabinet cabinet.CabinetName =" + cabinetName + ";";
+            String allQuery = "SELECT * FROM cabinet WHERE cabinet.CabinetID =" + cabinetID + ";";
             // Is this whatcha wanted? eyyyyyup
             PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
             ResultSet executeQuery = preparedStatement1.executeQuery();
 
             while (executeQuery.next()) //How we get the results
             {
+                String CabinetID = executeQuery.getString("CabinetID"); //add strings for all info
                 String CabinetName = executeQuery.getString("CabinetName");
+                String CabinetDate = executeQuery.getString("DateOfCreation");
+                String CabinetLock = executeQuery.getString("CabinetLocked");
+                String CabinetPassword = executeQuery.getString("Password");
+                String CabinetOwner = executeQuery.getString("Owner");
+                String CabinetPath = executeQuery.getString("FilePath");
                 // print the results
-                System.out.format("%s, \n", CabinetName);
+                System.out.format("%s, %s, \n", CabinetID, CabinetName); //make sure it prints all info
             }
 
         } catch (SQLException e) {
@@ -160,7 +170,7 @@ public class JavaToSQL2 {
             PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
             ResultSet executeQuery = preparedStatement1.executeQuery();
 
-            while (executeQuery.next()) //How we get the results
+            while (executeQuery.next()) //How we get the results //might not be needed for one result?
             {
                 String CabinetName = executeQuery.getString("Password");
                 // print the results
@@ -276,5 +286,5 @@ public class JavaToSQL2 {
             e.printStackTrace();
         }
     }
-
+//turn things into return comands
 }
