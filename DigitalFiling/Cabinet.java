@@ -17,8 +17,18 @@ public class Cabinet  {
             this.ID = i;
         }
 
-    public void setAll(String na,  String own, String date, String lock, String pass, Path p  ) {
-
+    public void setAll(String na,  String own, String date, String lock, String pass, Path p  ) { //exists for the purpose of making life easier
+        this.Name = na;
+        this.Owner = own;
+        this.cabPath = p;
+        this.password = pass;
+        this.DoC = date;
+        int temp = Integer.parseInt(lock);
+        if (temp == 0) {
+            this . lockState = false;
+        } else if (temp == 0) {
+            this.lockState = true;
+        }
     }
 
 
@@ -40,6 +50,7 @@ public class Cabinet  {
     public void setPass(String pass) {
         this.password = pass;
     }
+
 
 
     public boolean unlock( String dataPass) { //method to check a password against the stored password for the purpose of unlocking
