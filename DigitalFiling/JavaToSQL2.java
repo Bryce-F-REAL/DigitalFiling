@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package DigitalFiling;
+package javatosql2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -153,6 +153,38 @@ public class JavaToSQL2 {
         }
         return ret;
     }
+    
+    public void changeCabinetName(String cabinetID,String newName) {
+        try {
+
+            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+
+            String allQuery = "SELECT * FROM cabinet WHERE cabinet.CabinetID =" + cabinetID + ";";
+            String changeName = "UPDATE cabinet SET cabinet.CabinetName = '" + newName + "' WHERE cabinet.CabinetID =" + cabinetID + ";";
+            // Is this whatcha wanted? eyyyyyup
+            PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
+            PreparedStatement preparedStatement2 = connection.prepareStatement(changeName);
+            ResultSet executeQuery = preparedStatement1.executeQuery();
+            preparedStatement2.executeUpdate();
+            
+            while (executeQuery.next()) //How we get the results
+            {
+                String CabinetID = executeQuery.getString("CabinetID"); //add strings for all info
+                String CabinetName = executeQuery.getString("CabinetName");
+                String CabinetDate = executeQuery.getString("DateOfCreation");
+                String CabinetLock = executeQuery.getString("CabinetLocked");
+                String CabinetPassword = executeQuery.getString("Password");
+                String CabinetOwner = executeQuery.getString("Owner");
+                String CabinetPath = executeQuery.getString("FilePath");
+                // print the results
+                System.out.format("%s, %s, \n", CabinetID, CabinetName); //make sure it prints all info
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } 
+    
 
 
     public void showCabinetDate(String jdbcUrl, String username, String password, String cabinetName) {
