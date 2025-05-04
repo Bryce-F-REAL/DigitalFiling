@@ -18,15 +18,19 @@ import java.util.List;
  */
 public class JavaToSQL2 {
 
+    String jdbcUrl = "jdbc:mysql://localhost:3306/cabinetdb";
+    String username = "root";
+    String password = "B00t!";
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException {
         // TODO code application logic here
-
         String jdbcUrl = "jdbc:mysql://localhost:3306/cabinetdb";
         String username = "root";
         String password = "B00t!";
+       
         JavaToSQL2 temp = new JavaToSQL2();
         temp.showCabinetInfo(jdbcUrl, username, password, "4");
         temp.showCabinetInfo(jdbcUrl, username, password, "2");
@@ -118,6 +122,38 @@ public class JavaToSQL2 {
             e.printStackTrace();
         }
     }
+
+
+    public Cabinet createFromInfo(String cabinetID) {
+        Cabinet ret = new Cabinet(Integer.parseInt(cabinetID));
+        try {
+
+            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+
+            String allQuery = "SELECT * FROM cabinet WHERE cabinet.CabinetID =" + cabinetID + ";";
+            // Is this whatcha wanted? eyyyyyup
+            PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
+            ResultSet executeQuery = preparedStatement1.executeQuery();
+
+            while (executeQuery.next()) //How we get the results
+            {
+                String CabinetID = executeQuery.getString("CabinetID"); //add strings for all info
+                String CabinetName = executeQuery.getString("CabinetName");
+                String CabinetDate = executeQuery.getString("DateOfCreation");
+                String CabinetLock = executeQuery.getString("CabinetLocked");
+                String CabinetPassword = executeQuery.getString("Password");
+                String CabinetOwner = executeQuery.getString("Owner");
+                String CabinetPath = executeQuery.getString("FilePath");
+                // print the results
+                System.out.format("%s, %s, \n", CabinetID, CabinetName); //make sure it prints all info
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
 
     public void showCabinetDate(String jdbcUrl, String username, String password, String cabinetName) {
         try {

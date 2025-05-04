@@ -3,14 +3,23 @@ package DigitalFiling;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-public class Cabinet {
+public class Cabinet  {
     private int ID;
     private String Name;
     private String Owner;
     private Path cabPath; 
     private String password;
-    private boolean lockState = true;
+    private boolean lockState;
     private String DoC;
+
+
+        public Cabinet (int i) {
+            this.ID = i;
+        }
+
+    public void setAll(String na,  String own, String date, String lock, String pass, Path p  ) {
+
+    }
 
 
     public void setPath(Path p) {
