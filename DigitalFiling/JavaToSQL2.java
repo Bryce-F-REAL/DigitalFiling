@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package DigitalFiling;
+package javatosql2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,15 +30,19 @@ public class JavaToSQL2 {
         String jdbcUrl = "jdbc:mysql://localhost:3306/cabinetdb";
         String username = "root";
         String password = "B00t!";
-       
+        //These are needed to log into the SQL server.
+        //The URL (should be universal sense it's local), The username, and the password.
+
         JavaToSQL2 temp = new JavaToSQL2();
         temp.showCabinetInfo(jdbcUrl, username, password, "4");
         temp.showCabinetInfo(jdbcUrl, username, password, "2");
+        //Testing stuff to see cabinet info
         try {
 
-            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+            Connection connection = DriverManager.getConnection(jdbcUrl, username, password); //This connects to the SQL server
             // Now you can use 'connection' to execute SQL queries.
             // Don't forget to close the connection when you're done.
+            
             //  String updateQuery = "INSERT INTO cabinet (CabinetID, CabinetName, DateOfCreation, CabinetLocked, Password, Owner, Filepath) VALUES(12, 'My dudes', '2025-12-21', 1, 'myNUTT!', 'Bosh', '/cabinets/Homework');";
 
 //            String createTable = "CREATE TABLE cabinet ("
@@ -51,7 +55,6 @@ public class JavaToSQL2 {
 //                    + "FilePath LONGTEXT)"; //untested
 //            String createSchema = "CREATE SCHEMA myNewSchema"; //untested
 //            String createDataBase = "CREATE DATABASE myDatabase"; //untested
-
             //  PreparedStatement preparedStatement2 = connection.prepareStatement(updateQuery);
             //  preparedStatement2.executeUpdate();
             //update to change, query to look
@@ -61,10 +64,9 @@ public class JavaToSQL2 {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-       
-    }
 
+    }
+   
     public void showCabinetName(String jdbcUrl, String username, String password, String cabinetName) {
         try {
 
@@ -92,15 +94,17 @@ public class JavaToSQL2 {
      * @param jdbcUrl
      * @param username
      * @param password
+     * @param cabinetID
      * @param cabinetName
      * @return
      */
+    //This one shows all the info of a cabinet by finding it's ID.
     public void showCabinetInfo(String jdbcUrl, String username, String password, String cabinetID) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 
-            String allQuery = "SELECT * FROM cabinet WHERE cabinet.CabinetID =" + cabinetID + ";";
+            String allQuery = "SELECT * FROM cabinet WHERE cabinet.CabinetID =" + cabinetID + ";"; //The easy part, just puttting in SQL stuff within strings.
             // Is this whatcha wanted? eyyyyyup
             PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
             ResultSet executeQuery = preparedStatement1.executeQuery();
@@ -122,7 +126,6 @@ public class JavaToSQL2 {
             e.printStackTrace();
         }
     }
-
 
     public Cabinet createFromInfo(String cabinetID) {
         Cabinet ret = new Cabinet(Integer.parseInt(cabinetID));
@@ -153,8 +156,8 @@ public class JavaToSQL2 {
         }
         return ret;
     }
-    
-    public void changeCabinetName(String cabinetID,String newName) {
+
+    public void changeCabinetName(String cabinetID, String newName) {
         try {
 
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
@@ -166,7 +169,7 @@ public class JavaToSQL2 {
             PreparedStatement preparedStatement2 = connection.prepareStatement(changeName);
             ResultSet executeQuery = preparedStatement1.executeQuery();
             preparedStatement2.executeUpdate();
-            
+
             while (executeQuery.next()) //How we get the results
             {
                 String CabinetID = executeQuery.getString("CabinetID"); //add strings for all info
@@ -183,9 +186,38 @@ public class JavaToSQL2 {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    } 
-    
+    }
+    //Should work the same way as change name but for file paths.
+     public void changeCabinetFilePath(String cabinetID, String newFilePath) {
+        try {
 
+            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+
+            String allQuery = "SELECT * FROM cabinet WHERE cabinet.CabinetID =" + cabinetID + ";";
+            String changeName = "UPDATE cabinet SET cabinet.Filepath = '" + newFilePath + "' WHERE cabinet.CabinetID =" + cabinetID + ";"; //Note to self, DON'T forget to do 'this' with SQL names.
+            // Is this whatcha wanted? eyyyyyup
+            PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
+            PreparedStatement preparedStatement2 = connection.prepareStatement(changeName);
+            ResultSet executeQuery = preparedStatement1.executeQuery();
+            preparedStatement2.executeUpdate();
+
+            while (executeQuery.next()) //How we get the results
+            {
+                String CabinetID = executeQuery.getString("CabinetID"); //add strings for all info
+                String CabinetName = executeQuery.getString("CabinetName");
+                String CabinetDate = executeQuery.getString("DateOfCreation");
+                String CabinetLock = executeQuery.getString("CabinetLocked");
+                String CabinetPassword = executeQuery.getString("Password");
+                String CabinetOwner = executeQuery.getString("Owner");
+                String CabinetPath = executeQuery.getString("FilePath");
+                // print the results
+                System.out.format("%s, %s, \n", CabinetID, CabinetName); //make sure it prints all info
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void showCabinetDate(String jdbcUrl, String username, String password, String cabinetName) {
         try {
