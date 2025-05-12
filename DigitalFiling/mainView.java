@@ -8,14 +8,20 @@ public class mainView {
     
     //limit to ONE cabinet view at a time, as multiple opened at the same time might cause some serious issues (concurrency is a bitch)
 
-    private void fillList() {
+
+    public static void main() {
+        mainView m = new mainView();
+        m.fillList();
+    }
+    public void fillList() {
         //gets properties here
         JavaToSQL2 interp = new JavaToSQL2();
         String name = "";
         String owner = "";
-        int idMax = 64;
-        for (int i = 0; i < idMax; i++ ) { //maybe instead have it go to the interperator to create hte cabinets and ship them over here?
+        int idMax = 12;
+        for (int i = 1; i <= idMax; i++ ) { //maybe instead have it go to the interperator to create hte cabinets and ship them over here?
             String tid = "" + i;
+            System.out.println("adding element " + i);
             Cabinet temp = interp.createFromInfo(tid);
             cabList.add(temp); //talk to henry about the possibility of shipping Cabinets directly from the database
         }

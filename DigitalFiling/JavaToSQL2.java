@@ -38,7 +38,7 @@ public class JavaToSQL2 {
         temp.showCabinetInfo(jdbcUrl, username, password, "2");
         //Testing stuff to see cabinet info
         try {
-
+           // A bunch of old code, I don't know why I haven't removed it all yet.
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password); //This connects to the SQL server
             // Now you can use 'connection' to execute SQL queries.
             // Don't forget to close the connection when you're done.
@@ -105,6 +105,7 @@ public class JavaToSQL2 {
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 
             String allQuery = "SELECT * FROM cabinet WHERE cabinet.CabinetID =" + cabinetID + ";"; //The easy part, just puttting in SQL stuff within strings.
+            //Works by just displaying all info but only for the cabinet with the matching ID.
             // Is this whatcha wanted? eyyyyyup
             PreparedStatement preparedStatement1 = connection.prepareStatement(allQuery);
             ResultSet executeQuery = preparedStatement1.executeQuery();
@@ -126,7 +127,7 @@ public class JavaToSQL2 {
             e.printStackTrace();
         }
     }
-
+    //Perhaps a way to make cabinets but the code hasn't been made for it yet.
     public Cabinet createFromInfo(String cabinetID) {
         Cabinet ret = new Cabinet(Integer.parseInt(cabinetID));
         try {
