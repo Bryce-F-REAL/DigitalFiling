@@ -36,6 +36,9 @@ public class Cabinet  {
         // method to initialize the path of a cabinet
         this.cabPath = p;
     }
+    public String getPath() {
+        return this.cabPath.toString();
+    }
 
     public void setOwner(String own) {
         //method to set owner property
