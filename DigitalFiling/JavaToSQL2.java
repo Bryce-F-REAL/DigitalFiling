@@ -120,7 +120,7 @@ public class JavaToSQL2 {
                 String CabinetOwner = executeQuery.getString("Owner");
                 String CabinetPath = executeQuery.getString("FilePath");
                 // print the results
-                System.out.format("%s, %s, \n", CabinetID, CabinetName); //make sure it prints all info
+                System.out.format("%s, %s, %s, %s, %s, %s, %s \n", CabinetID, CabinetName, CabinetDate, CabinetLock, CabinetPassword, CabinetOwner, CabinetPath); //make sure it prints all info
             }
 
         } catch (SQLException e) {
