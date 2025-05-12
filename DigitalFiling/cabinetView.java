@@ -4,7 +4,13 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class cabinetView {
-     
+    private Cabinet cab;
+    
+    public cabinetView (Cabinet View) {
+        this.cab = View;
+    }
+
+
      ArrayList<File> cabFiles = new ArrayList<File>();
      File location;
 
