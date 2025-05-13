@@ -33,6 +33,7 @@ public class mainView {
 
     private void refreshView() {
         //will go back through the existing list and create GUI elements based off the cabinet objects
+    
         
     }
 

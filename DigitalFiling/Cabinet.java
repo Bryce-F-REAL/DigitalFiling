@@ -63,8 +63,10 @@ public class Cabinet  {
     System.out.println("Please enter Password");
     String pass = sc.nextLine();
     if(dataPass.equals(pass)){ 
+        sc.close();
         return true;
     } else {
+        sc.close();
         return false;
     }
 
