@@ -17,15 +17,17 @@ public class cabinetView {
     
 
     public void initializeCabinet() {
-        //essentially this method collects the files to display for this method
+        //essentially this method collects the files to display for this method essentailly adds all listed files in a folder to an array list and prints names in console
+        File[] listOfFiles = location.listFiles();
+
+        for (File file : listOfFiles) { // taken and modified from stack overflow
+        if (file.isFile()) {
+        System.out.println(file.getName());
+        cabFiles.add(file);
+    }
 
     };
-    File<> listOfFiles = location.listFiles();
-
-    for (File file : listOfFiles) {
-    if (file.isFile()) {
-        System.out.println(file.getName());
-    }
+    
 }
 
 
